@@ -23,9 +23,10 @@ public class Tres_raya_tarde {
         boolean salir = false;
 
         Juego j1 = new Juego();
-
+        j1.NuevaPartida();
+        j1.DibujarTablero();
         while (salir != true) {
-
+            
         }
 
     }
