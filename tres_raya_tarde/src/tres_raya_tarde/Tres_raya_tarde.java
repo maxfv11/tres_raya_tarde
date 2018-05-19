@@ -5,6 +5,9 @@
  */
 package tres_raya_tarde;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 /**
  *
  * @author Max
@@ -16,6 +19,15 @@ public class Tres_raya_tarde {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        boolean salir = false;
+
+        Juego j1 = new Juego();
+
+        while (salir != true) {
+
+        }
+
     }
-    
+
 }
