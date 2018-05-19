@@ -6,6 +6,7 @@
 package tres_raya_tarde;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -17,16 +18,18 @@ public class Tres_raya_tarde {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean salir = false;
 
-        Juego j1 = new Juego();
+        Juego j1 = new Juego(br);
+
         j1.NuevaPartida();
-        j1.DibujarTablero();
+
         while (salir != true) {
-            
+            j1.PedirJugada();
+            j1.DibujarTablero();
         }
 
     }
