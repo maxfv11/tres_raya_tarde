@@ -20,7 +20,7 @@ public class Juego {
 
     private char[][] Tablero;
     private boolean turnoJugador = true;
-    private boolean partidaFinalizada=false;
+    private boolean partidaFinalizada = false;
 
     public Juego(BufferedReader _br) {
         br = _br;
@@ -81,9 +81,10 @@ public class Juego {
 
             jugadaConExito = escribirJugada(posFila, posCol);
         }
-        
+
     }
-    public void cambioTurno(){
+
+    public void cambioTurno() {
         turnoJugador = !turnoJugador;   //cambio a jugador opuesto
     }
 
@@ -111,45 +112,56 @@ public class Juego {
         //victoria per files
         for (int f = 0; f < 3; f++) {
             for (int c = 0; c < 3; c++) {
-                if (Tablero[f][c] == fichaJugador)
-                {
+                if (Tablero[f][c] == fichaJugador) {
                     contadorFicha++;
                 }
             }
-            if(contadorFicha == 3){
+            if (contadorFicha == 3) {
                 victoria = true;
             }
             contadorFicha = 0;
         }
-        
+
         //victoria per columnes
         for (int c = 0; c < 3; c++) {
             for (int f = 0; f < 3; f++) {
-                if (Tablero[f][c] == fichaJugador)
-                {
+                if (Tablero[f][c] == fichaJugador) {
                     contadorFicha++;
                 }
             }
-            if(contadorFicha == 3){
+            if (contadorFicha == 3) {
                 victoria = true;
             }
             contadorFicha = 0;
         }
         //victoria diagonal
         if (Tablero[0][0] == fichaJugador && Tablero[1][1] == fichaJugador && Tablero[2][2] == fichaJugador) {
-            victoria=true;
+            victoria = true;
         }
         if (Tablero[0][2] == fichaJugador && Tablero[1][1] == fichaJugador && Tablero[2][0] == fichaJugador) {
-            victoria=true;
+            victoria = true;
         }
         return victoria;
     }
-    public int getJugadorActual(){
+
+    public boolean tableroLleno() {
+        boolean estaLleno = true;
+        for (int f = 0; f < 3; f++) {
+            for (int c = 0; c < 3; c++) {
+                if (Tablero[f][c] == ' ') {
+                    estaLleno = false;
+                }
+            }
+        }
+        return estaLleno;
+    }
+
+    public int getJugadorActual() {
         int jugador;
         if (turnoJugador) {
-            jugador=1;
-        }else {
-            jugador=2;
+            jugador = 1;
+        } else {
+            jugador = 2;
         }
         return jugador;
     }

@@ -30,11 +30,15 @@ public class Tres_raya_tarde {
         while (salir != true) {
             j1.PedirJugada();
             j1.DibujarTablero();
-            
-            if (j1.esVictoria()==true) {
-                System.out.println("VICORIA!! Jugador " + j1.getJugadorActual()+ " ha ganado!!");
-                salir=true;
-            }else{
+
+            if (j1.esVictoria() == true) {
+                System.out.println("VICORIA!! Jugador " + j1.getJugadorActual() + " ha ganado!!");
+                salir = true;
+            } else if (j1.tableroLleno() == true) {
+                System.out.println("TABLERO LLENO! ALCANZADO MAXIMO JUGADAS!");
+                salir = true;
+
+            } else {
                 j1.cambioTurno();
             }
         }
