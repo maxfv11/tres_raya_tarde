@@ -12,8 +12,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Max
- * turnoJugador false->(jugador 2 'O'), true->(jugador 1 'X')
+ * @author Max turnoJugador false->(jugador 2 'O'), true->(jugador 1 'X')
  */
 public class Juego {
 
@@ -21,9 +20,14 @@ public class Juego {
 
     private char[][] Tablero;
     private boolean turnoJugador = true;
+    private boolean partidaFinalizada=false;
 
     public Juego(BufferedReader _br) {
         br = _br;
+    }
+
+    public char getFichaJugador() {
+        return (turnoJugador == true) ? 'X' : 'O';
     }
 
     public void NuevaPartida() {
@@ -77,17 +81,76 @@ public class Juego {
 
             jugadaConExito = escribirJugada(posFila, posCol);
         }
-        turnoJugador=!turnoJugador;   //cambio a jugador opuesto
+        
+    }
+    public void cambioTurno(){
+        turnoJugador = !turnoJugador;   //cambio a jugador opuesto
     }
 
     public boolean escribirJugada(int posFila, int posCol) {
         boolean exito = true;
-        if (Tablero[posFila][posCol] == ' ') {
-            Tablero[posFila][posCol] = (turnoJugador == true)? 'X' : 'O';
+        if (posFila >= 0 && posCol >= 0 && posFila <= 2 && posCol <= 2) {
+            if (Tablero[posFila][posCol] == ' ') {
+                Tablero[posFila][posCol] = (turnoJugador == true) ? 'X' : 'O';
+            } else {
+                exito = false;
+                System.out.println("POSICION OCUPADA!!");
+            }
         } else {
             exito = false;
-            System.out.println("POSICION OCUPADA!!");
+            System.out.println("POSICION ESCRITA FUERA DE RANGO");
         }
+
         return exito;
+    }
+
+    public boolean esVictoria() {
+        char fichaJugador = getFichaJugador();
+        int contadorFicha = 0;
+        boolean victoria = false;
+        //victoria per files
+        for (int f = 0; f < 3; f++) {
+            for (int c = 0; c < 3; c++) {
+                if (Tablero[f][c] == fichaJugador)
+                {
+                    contadorFicha++;
+                }
+            }
+            if(contadorFicha == 3){
+                victoria = true;
+            }
+            contadorFicha = 0;
+        }
+        
+        //victoria per columnes
+        for (int c = 0; c < 3; c++) {
+            for (int f = 0; f < 3; f++) {
+                if (Tablero[f][c] == fichaJugador)
+                {
+                    contadorFicha++;
+                }
+            }
+            if(contadorFicha == 3){
+                victoria = true;
+            }
+            contadorFicha = 0;
+        }
+        //victoria diagonal
+        if (Tablero[0][0] == fichaJugador && Tablero[1][1] == fichaJugador && Tablero[2][2] == fichaJugador) {
+            victoria=true;
+        }
+        if (Tablero[0][2] == fichaJugador && Tablero[1][1] == fichaJugador && Tablero[2][0] == fichaJugador) {
+            victoria=true;
+        }
+        return victoria;
+    }
+    public int getJugadorActual(){
+        int jugador;
+        if (turnoJugador) {
+            jugador=1;
+        }else {
+            jugador=2;
+        }
+        return jugador;
     }
 }
