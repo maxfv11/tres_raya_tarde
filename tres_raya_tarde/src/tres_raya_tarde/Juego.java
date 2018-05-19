@@ -59,22 +59,22 @@ public class Juego {
             System.out.println("Jugador 2 (O)");
         }
 
-        System.out.println("En qué fila quieres la ficha?");
+        System.out.println("En qué fila quieres la ficha? (1,2,3)");
         String cadena = br.readLine();
         int posFila = Integer.parseInt(cadena);
         posFila--;
-        System.out.println("En qué columna quieres la ficha?");
+        System.out.println("En qué columna quieres la ficha? (1,2,3");
         String cadena2 = br.readLine();
         int posCol = Integer.parseInt(cadena2);
         posCol--;
 
         boolean jugadaConExito = escribirJugada(posFila, posCol);
         while (jugadaConExito == false) {
-            System.out.println("En qué fila quieres la ficha?");
+            System.out.println("En qué fila quieres la ficha? (1,2,3)");
             cadena = br.readLine();
             posFila = Integer.parseInt(cadena);
             posFila--;
-            System.out.println("En qué columna quieres la ficha?");
+            System.out.println("En qué columna quieres la ficha? (1,2,3");
             cadena2 = br.readLine();
             posCol = Integer.parseInt(cadena2);
             posCol--;
